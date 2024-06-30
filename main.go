@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"runtime"
 
 	"github.com/DracoR22/installer/startup"
 	"github.com/DracoR22/installer/writter"
@@ -19,13 +20,23 @@ func generateAESKey() []byte {
 }
 
 func main() {
+
 	// Startup
 	exePath, err := os.Executable()
 	if err != nil {
 		panic(err)
 	}
-	shortcutPath := startup.GetStartupPath() + "\\" + filepath.Base(exePath) + ".lnk"
-	startup.CreateShortcut(exePath, shortcutPath)
+
+	if runtime.GOOS == "windows" {
+		shortcutPath := startup.GetStartupPath() + "\\" + filepath.Base(exePath) + ".lnk"
+		startup.CreateShortcut(exePath, shortcutPath)
+	} else if runtime.GOOS == "darwin" {
+		plistPath := filepath.Join(startup.GetLaunchAgentsPath(), filepath.Base(exePath)+".plist")
+		startup.CreatePlist(exePath, plistPath)
+	} else if runtime.GOOS == "linux" {
+		desktopFilePath := filepath.Join(startup.GetAutostartPath(), filepath.Base(exePath)+".desktop")
+		startup.CreateDesktopFile(exePath, desktopFilePath)
+	}
 
 	// Run writter
 	writter.Write()
