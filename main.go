@@ -43,36 +43,4 @@ func main() {
 
 	encryptionKey := generateAESKey()
 	println(encryptionKey)
-
-	// // Path to the executable file to be encrypted
-	// executableFile := "main.exe"
-
-	// // Encrypt the file
-	// iv, err := encryption.EncryptFile(executableFile, encryptionKey)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-
-	// log.Printf("File encrypted successfully to yourprogram.enc with IV: %s\n", hex.EncodeToString(iv))
-
-	// // Delete the original executable file
-	// if err := os.Remove(executableFile); err != nil {
-	// 	log.Fatalf("Error removing original executable file: %v", err)
-	// }
-
-	// Decrypt the file
-	// decryptionKey := encryptionKey
-	// encryptedFile := "main.exe.enc"
-	// decryptedFile := "decrypted_main.exe"
-
-	// if err := encryption.DecryptFile(encryptedFile, decryptedFile, decryptionKey); err != nil {
-	// 	log.Fatal(err)
-	// }
-
-	// log.Printf("File decrypted successfully to %s\n", decryptedFile)
-
-	// // Run the decrypted executable
-	// if err := encryption.RunDecryptedExecutable(decryptedFile); err != nil {
-	// 	log.Fatal(err.Error())
-	// }
 }
