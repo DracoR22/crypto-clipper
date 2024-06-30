@@ -1,8 +1,6 @@
 package main
 
 import (
-	"crypto/rand"
-	"log"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -11,12 +9,13 @@ import (
 	"github.com/DracoR22/installer/writter"
 )
 
-func generateAESKey() []byte {
-	key := make([]byte, 32) // AES-256 key length
-	if _, err := rand.Read(key); err != nil {
-		log.Fatal("Error generating random key:", err)
-	}
-	return key
+// Global instance of WalletTypes
+var MyWallets = writter.WalletTypes{
+	ETH_WALLET:    "ETH_WALLET",
+	BTC_WALLET:    "BTC_WALLET",
+	SOLANA_WALLET: "SOLANA_WALLET",
+	COSMOS_WALLET: "COSMOS_WALLET",
+	OSMO_WALLET:   "OSMO_WALLET",
 }
 
 func main() {
@@ -39,8 +38,5 @@ func main() {
 	}
 
 	// Run writter
-	writter.Write()
-
-	encryptionKey := generateAESKey()
-	println(encryptionKey)
+	writter.Write(MyWallets)
 }

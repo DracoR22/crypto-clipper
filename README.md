@@ -32,3 +32,7 @@ go install github.com/goreleaser/goreleaser/v2@latest
 ```shell
 goreleaser --snapshot --clean                          
 ```
+
+### USAGE:
+- Write your wallets inside of `MyWallets`
+- Execute the .exe file in the computer you want to use it
