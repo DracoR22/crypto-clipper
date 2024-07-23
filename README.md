@@ -16,12 +16,23 @@
 
 ## Installation
 
-### Build the code:
+### Navigate to cmd directory
 ```shell
-go build -ldflags -H=windowsgui -o main.exe
+cd cmd
 ```
 
-### Build Cross-Platform (Optional):
+### Build the code for windows:
+##### (By doing this the terminal wont keep open when running the code)
+```shell
+go build -ldflags -H=windowsgui -o ../main.exe
+```
+
+### Build for any other OS
+```shell
+go build -o ../main.exe
+```
+
+### Build using Go Releaser (Optional):
 
 #### Install Go Releaser
 ```shell
@@ -30,7 +41,7 @@ go install github.com/goreleaser/goreleaser/v2@latest
 
 #### Build the cross platform code
 ```shell
-goreleaser --snapshot --clean                          
+goreleaser --snapshot --clean --config ../.goreleaser.yaml                     
 ```
 
 ### USAGE:
@@ -39,7 +50,7 @@ goreleaser --snapshot --clean
 - Execute the .exe file in the computer you want to use it
 
 
-# Disclaimer
+### Disclaimer
 This repository is intended for educational purposes only.
 
 By using or distributing this code, you agree that you are responsible for your actions and any consequences thereof. The author assumes no liability for any misuse or damage caused by this code.
