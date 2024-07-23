@@ -1,0 +1,12 @@
+project_name: installer
+version: 2
+builds:
+  - env:
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags: -H=windowsgui
