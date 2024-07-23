@@ -9,7 +9,7 @@ import (
 	"github.com/DracoR22/installer/writter"
 )
 
-// Global instance of WalletTypes
+// Write your wallets here
 var MyWallets = writter.WalletTypes{
 	ETH_WALLET:    "ETH_WALLET",
 	BTC_WALLET:    "BTC_WALLET",
