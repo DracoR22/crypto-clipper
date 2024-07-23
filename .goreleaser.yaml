@@ -1,4 +1,5 @@
 project_name: installer
+dist: ../dist
 version: 2
 builds:
   - env:
